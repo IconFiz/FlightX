@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATIS Generator - FlightX</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/atis.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600&family=SF+Mono:wght@400;500&display=swap">
+</head>
+<body>
+    <div class="theme-switch">
+        <input type="checkbox" id="theme-toggle">
+        <label for="theme-toggle" class="theme-label">
+            <span class="theme-icon"></span>
+        </label>
+    </div>
+
+    <main class="container">
+        <header>
+            <a href="index.html" class="back-link">← Back</a>
+            <h1>ATIS Generator</h1>
+            <p class="subtitle">Generate professional ATIS messages</p>
+        </header>
+
+        <form id="atisForm" class="form-container">
+            <div class="form-section">
+                <label for="discordUsername">Discord Username</label>
+                <input type="text" id="discordUsername" required placeholder="Enter your Discord username">
+            </div>
+
+            <div class="form-section">
+                <label for="icao">Airport ICAO Code</label>
+                <input type="text" id="icao" required maxlength="4" placeholder="e.g., KJFK, EGLL" pattern="[A-Za-z]{4}">
+                <div id="airportName" class="airport-name"></div>
+            </div>
+
+            <div class="form-section">
+                <label for="runways">Runways (comma-separated)</label>
+                <input type="text" id="runways" required placeholder="e.g., 27L, 27R">
+            </div>
+
+            <div class="form-section">
+                <label for="approach">Approach Type</label>
+                <select id="approach" required>
+                    <option value="ILS">ILS</option>
+                    <option value="RNAV">RNAV</option>
+                    <option value="VOR">VOR</option>
+                    <option value="Visual">Visual</option>
+                    <option value="Simultaneous">Simultaneous</option>
+                </select>
+            </div>
+
+            <div class="form-section">
+                <label for="temperature">Temperature (°C)</label>
+                <input type="number" id="temperature" required>
+            </div>
+
+            <div class="form-section">
+                <label for="dewPoint">Dew Point (°C)</label>
+                <input type="number" id="dewPoint" required>
+            </div>
+
+            <div class="form-section">
+                <label for="altimeter">Altimeter (inHg)</label>
+                <input type="number" id="altimeter" required step="0.01" min="28" max="32">
+            </div>
+
+            <div class="form-section">
+                <label for="time">Time (UTC)</label>
+                <input type="text" id="time" readonly>
+            </div>
+
+            <div class="form-section">
+                <label for="notams">NOTAMs/Special Instructions</label>
+                <textarea id="notams" rows="3" placeholder="Enter any NOTAMs or special instructions"></textarea>
+            </div>
+
+            <div class="button-group">
+                <button type="submit" class="generate-btn">Generate ATIS</button>
+                <button type="button" id="audioBtn" class="audio-btn" disabled>
+                    <span class="audio-icon">🔊</span>
+                    Listen to ATIS
+                </button>
+            </div>
+        </form>
+
+        <div class="output-section">
+            <pre id="atisOutput" class="atis-output"></pre>
+        </div>
+    </main>
+
+    <script src="js/theme.js"></script>
+    <script src="js/atis.js"></script>
+</body>
+</html> 

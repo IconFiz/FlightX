@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Squawk Code Generator</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: black;
+        }
+        .arrow-path-icon {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+        }
+        .card {
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+        }
+        .code-display {
+            transition: all 0.3s ease;
+        }
+        .generate-button {
+            transition: all 0.2s ease;
+        }
+        .generate-button:hover {
+            transform: scale(1.02);
+        }
+        .generate-button:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        function App() {
+            const [squawkCode, setSquawkCode] = React.useState('1200');
+
+            const generateSquawkCode = () => {
+                const min = 1200;
+                const max = 7777;
+                let code;
+                do {
+                    code = Math.floor(Math.random() * (max - min + 1) + min).toString();
+                } while (code.includes('8') || code.includes('9'));
+                setSquawkCode(code);
+            };
+
+            return (
+                <div className="min-h-screen bg-black flex items-center justify-center p-4">
+                    <div className="max-w-md w-full">
+                        <div className="card bg-black rounded-3xl p-8 shadow-xl border border-gray-800">
+                            <h1 className="text-4xl font-semibold text-white text-center mb-2">
+                                Squawk Code
+                            </h1>
+                            <p className="text-gray-400 text-center mb-8">
+                                Generate your transponder code
+                            </p>
+                            
+                            <div className="code-display bg-gray-900 rounded-2xl p-8 mb-8 text-center border border-gray-800">
+                                <h2 className="text-6xl font-mono tracking-wider text-white">
+                                    {squawkCode.split('').join(' ')}
+                                </h2>
+                            </div>
+
+                            <button
+                                onClick={generateSquawkCode}
+                                className="generate-button w-full bg-white text-black rounded-2xl py-4 px-6 flex items-center justify-center space-x-2 text-lg font-medium hover:bg-gray-100"
+                            >
+                                <svg className="arrow-path-icon" viewBox="0 0 24 24">
+                                    <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                </svg>
+                                <span>Generate New Code</span>
+                            </button>
+
+                            <p className="text-xs text-gray-400 text-center mt-6">
+                                Valid codes range from 1200 to 7777
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
