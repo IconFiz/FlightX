@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Gallery - FlightX</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/gallery.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600&family=SF+Mono:wght@400;500&display=swap">
+</head>
+<body>
+    <div class="theme-switch">
+        <input type="checkbox" id="theme-toggle">
+        <label for="theme-toggle" class="theme-label">
+            <span class="theme-icon"></span>
+        </label>
+    </div>
+
+    <main class="container">
+        <header>
+            <a href="index.html" class="back-link">← Back</a>
+            <h1>Flight Gallery</h1>
+            <p class="subtitle">Share your aviation moments</p>
+        </header>
+
+        <div class="gallery-actions">
+            <button id="viewBtn" class="action-btn active">
+                <span class="icon">👁️</span>
+                View Gallery
+            </button>
+            <button id="uploadBtn" class="action-btn">
+                <span class="icon">📤</span>
+                Upload Photo
+            </button>
+        </div>
+
+        <!-- View Gallery Section -->
+        <div id="viewSection" class="gallery-section">
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Gallery items will be dynamically added here -->
+            </div>
+        </div>
+
+        <!-- Upload Section -->
+        <div id="uploadSection" class="gallery-section hidden">
+            <form id="uploadForm" class="upload-form">
+                <div class="form-section">
+                    <label for="photoTitle">Photo Title</label>
+                    <input type="text" id="photoTitle" required placeholder="Enter a descriptive title">
+                </div>
+
+                <div class="form-section">
+                    <label for="photographer">Photographer Name</label>
+                    <input type="text" id="photographer" required placeholder="Enter your name">
+                </div>
+
+                <div class="form-section">
+                    <label for="photoUpload">Select Photo</label>
+                    <div class="upload-area" id="uploadArea">
+                        <input type="file" id="photoUpload" accept="image/*" required>
+                        <div class="upload-prompt">
+                            <span class="icon">📸</span>
+                            <p>Drag and drop your photo here or click to browse</p>
+                            <p class="subtext">Supported formats: JPG, PNG</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <label for="photoDescription">Description (Optional)</label>
+                    <textarea id="photoDescription" rows="3" placeholder="Tell us about your photo..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <span class="icon">📤</span>
+                    Upload Photo
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Photo Modal -->
+    <div id="photoModal" class="modal hidden">
+        <div class="modal-content">
+            <button class="close-btn">&times;</button>
+            <div class="modal-body">
+                <img id="modalImage" src="" alt="Gallery photo">
+                <div class="photo-info">
+                    <h2 id="modalTitle"></h2>
+                    <p class="photographer">By <span id="modalPhotographer"></span></p>
+                    <p class="description" id="modalDescription"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/theme.js"></script>
+    <script src="js/gallery.js"></script>
+</body>
+</html> 
